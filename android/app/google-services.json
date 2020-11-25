@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "148384234700",
+    "firebase_url": "https://ncnmo-mobile.firebaseio.com",
+    "project_id": "ncnmo-mobile",
+    "storage_bucket": "ncnmo-mobile.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:148384234700:android:fde7582b243be040a15669",
+        "android_client_info": {
+          "package_name": "com.ncnmo.mobile"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "148384234700-k5iqogmbn4ipa1qq1quc2nf2sjisivtn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAl9xxo8xGWwGVSnIKXOX0qSdYwEcoLxjs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "148384234700-k5iqogmbn4ipa1qq1quc2nf2sjisivtn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

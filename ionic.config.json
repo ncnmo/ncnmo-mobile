@@ -1,0 +1,7 @@
+{
+  "name": "ncnmo-mobile",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import {Plugins, PushNotification, PushNotificationToken, PushNotificationActionPerformed, Capacitor} from '@capacitor/core';
-
+import { LocalDatabaseService  } from '../services/local-database.service';
+import { DeviceTokenService } from '../services/device-token.service';
+import { Router } from '@angular/router';
 const { PushNotifications } = Plugins;
 
 @Injectable({
@@ -8,7 +10,7 @@ const { PushNotifications } = Plugins;
 })
 export class FirebaseCloudMessagingService {
 
-  constructor() { }
+  constructor(private router: Router, private localDatabaseService: LocalDatabaseService, private deviceTokenService: DeviceTokenService) { }
   initPush() {
     if (Capacitor.platform !== 'web') {
       this.registerPush();
@@ -28,36 +30,26 @@ export class FirebaseCloudMessagingService {
     PushNotifications.addListener(
       'registration',
       (token: PushNotificationToken) => {
-        console.log('My token: ' + JSON.stringify(token));
-       // this.deviceTokenService.saveToken(token).subscribe(data=>console.log(data));
+        this.deviceTokenService.saveToken(token).subscribe(data=>console.log(data));
       }
     );
  
     PushNotifications.addListener('registrationError', (error: any) => {
-      console.log('Error: ' + JSON.stringify(error));
     });
  
     PushNotifications.addListener(
       'pushNotificationReceived',
       async (notification: PushNotification) => {
         console.log('Push received: ' + JSON.stringify(notification));
-
-            /*const toast = this.toastCtrl.create({
-              message:notification.body,
-              duration:3000,
-              position:"middle"
-            })
-  
-            toast.then(d=>d.present);   
-            let date =  Date();
-          //  this.databaseService.addNotification(+msg.id,msg.aps.alert.title,msg.aps.alert.body,msg.image,msg.postType,date);
-            if(notification.data.postType === "event"){
-              //this.events.publish('events:created');
-            }
-            else if(notification.data.postType === "news"){
-              //this.events.publish('news:created');
-            }*/
-           // this.events.publish('notifications:created');
+        let date =  Date();
+        this.localDatabaseService.addNotification(+notification.id,notification.title,notification.body,notification.data.image,notification.data.postType,date);
+        //if(notification.data.postType === "event"){
+          //this.events.publish('events:created');
+        //}
+        //else if(notification.data.postType === "news"){
+          //this.events.publish('news:created');
+        //}
+       // this.events.publish('notifications:created');
       })
  
  
@@ -68,7 +60,7 @@ export class FirebaseCloudMessagingService {
         const data = notification.notification.data;
         console.log('Action performed: ' + JSON.stringify(notification.notification));
         if (data.detailsId) {
-          
+          this.router.navigateByUrl('')
         }
       }
     );

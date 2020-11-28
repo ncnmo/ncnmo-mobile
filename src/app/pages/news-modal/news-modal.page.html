@@ -1,0 +1,35 @@
+<ion-header no-border>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button color="success" (click)="close()">Back
+          <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title color="success">News Detaills</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+      <ion-card-header translucent="true">         
+        <ion-card-title>{{data.title}}</ion-card-title>
+      </ion-card-header>
+      <img src="{{data.imagePath}}"  />
+    <ion-row>
+      <ion-col>        
+        <div>Posted by Admin on Feb. 17 2019</div>
+      </ion-col>      
+    </ion-row>
+  </ion-card>
+
+  <ion-list lines="none">
+   
+    <ion-grid>
+      <ion-row>
+        <div [innerHTML]="data.body"></div>
+      </ion-row>
+     
+    </ion-grid>
+    
+  </ion-list>
+</ion-content>

@@ -1,17 +1,44 @@
-<ion-header [translucent]="true">
+<ion-header no-border mode="ios" [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Tab 1
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
+      <ion-buttons slot="start">
+         <h6 style="width:35%; height:35%;"><img src="../../assets/ncnmologo.png"  /></h6>
+      </ion-buttons>
+      <ion-title color="success"></ion-title>
+      <ion-buttons slot="end">
+        <ion-button fill="solid" size="small" color="success" href="https://ncnmo.org/donate/">
+          Donate
+        </ion-button>
+        <ion-button color="seccess" (click)="showSearhModal()">
+          <ion-icon slot="end" name="search" color="success"></ion-icon>
+        </ion-button>
+        <ion-button color="success" (click)="presentPopover($event)">
+            <ion-icon name="information-circle" ></ion-icon>
+        </ion-button>
+      </ion-buttons>
     </ion-toolbar>
-  </ion-header>
-
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+</ion-header>
+<ion-content [fullscreen]="true">
+  <div *ngIf="loading" class="spinner-container">
+    <ion-spinner color="secondary"></ion-spinner>
+  </div>
+  <div class="main-cnt">
+    <label>{{active}}</label>
+    <label>{{enabled}}</label>
+    <ion-card (click)="showNewsModal(new)" *ngFor="let new of news" no-padding no-margin>
+        <ion-card-header>
+            <ion-card-subtitle>
+                {{new.chapterName}}
+            </ion-card-subtitle>
+          </ion-card-header>
+      <img src="{{new.imagePath}}"  />
+         
+      <ion-card-content>
+        <strong>{{new.title}}</strong>
+       <hr>
+        {{new.abstract}}
+        <hr>
+        <p>{{new.dateAdded | date:'mediumDate'}}</p>
+      </ion-card-content>
+    </ion-card>
+  </div>
 </ion-content>

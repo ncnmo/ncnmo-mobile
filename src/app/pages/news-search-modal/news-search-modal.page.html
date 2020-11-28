@@ -1,0 +1,24 @@
+<ion-header no-border>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button color="success" (click)="close()">Back
+          <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title color="success">Search News</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-searchbar [formControl]="searchControl" (ionChange)="onSearchInput()"></ion-searchbar>
+
+  <!--<div *ngIf="searching" class="spinner-container">
+    <ion-spinner></ion-spinner>
+  </div>-->
+
+  <ion-list>
+    <ion-item (click)="showModal(new)" *ngFor="let new of news">
+      {{ new.title.substring(0,45) }}
+    </ion-item>
+  </ion-list>
+</ion-content>

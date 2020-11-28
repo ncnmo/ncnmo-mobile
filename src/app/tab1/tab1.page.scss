@@ -1,0 +1,90 @@
+.spinner-container {
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+  }
+  
+  .welcome-card ion-img {
+    max-height: 35vh;
+    overflow: hidden;
+  }
+  ion-card{
+    //margin: 0%;
+    //margin-bottom: 5%;
+    //display: flex;
+    //flex-direction: column;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    margin-bottom: 0 !important;
+    margin-top: 0 !important;
+  }
+  ion-card-content{
+    margin: 0%;
+    font-size: 13px;
+  }
+  /*ion-row{
+    background-color: #434A54;
+  }ion-item{
+      font-size: 14px;
+  }*/
+  ion-grid{
+    margin: 0%;
+    border-top-style: ridge;
+  }
+  
+  /*ion-card-subtitle{
+    margin: 0%;
+  }*/
+  
+  .module {
+    background: 
+      linear-gradient(
+        rgba(0, 0, 0, 0.6),
+        rgba(0, 0, 0, 0.6)
+      ),
+      url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/3/skyscrapers.jpg);
+    background-size: cover;
+    width: 400px;
+    height: 400px;
+    margin: 10px 0 0 10px;
+    position: relative;
+    float: left;
+  }
+  
+  .mid h2 {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 900;
+    color: white;
+    text-transform: uppercase;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    font-size: 1rem;
+    transform: translate(-50%, -50%);
+  }
+      .bg{
+        background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/3/skyscrapers.jpg);
+        height: 300px;
+        background-size: cover;
+        filter: blur(2px);
+        background-position: center center;
+      }
+  
+      .main-cnt{
+        width: 100%;
+        height: 70px;
+      }
+      .dp{
+        border-radius: 30%;
+        height: 100px;
+        width: 100px;
+        z-index: 5;
+        margin-top: -50px;
+        position: relative;
+        left: 50%;
+        margin-right: -30%;
+        transform: translate(-30%, -30%);
+        box-shadow: -6px 10px 61px 3px rgba(0, 0, 0, 0.45)
+      }

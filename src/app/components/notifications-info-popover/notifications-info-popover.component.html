@@ -1,0 +1,37 @@
+<ion-content>
+  <ion-card *ngIf="feedback">
+      <ion-card-content >
+          <div style="text-align: center; margin-top:15%; padding: 15%;">
+              <ion-text color="dark">
+                  Thanks for your feedback!
+              </ion-text>
+          </div>
+      </ion-card-content>
+      <ion-footer>
+        <ion-button color="success" expand="full" (click)="close()">Close</ion-button>
+      </ion-footer>
+    </ion-card>
+    <ion-card *ngIf="!feedback">
+      <ion-card-content>
+          <p>
+              <ion-text color="dark">
+                 This page displays notifications of news and events posted by NCNMO and/or chapter(s) you follow.
+              </ion-text>
+            </p>
+            <p>
+              <ion-text color="dark">
+                It also displays notification when any of the events you subscribe to get updated
+              </ion-text>
+          </p>
+      </ion-card-content>
+      <ion-footer>
+        <ion-item>
+          <h6>Please give us your feedback</h6>
+        </ion-item>
+        <ion-item>
+            <ion-textarea auto-grow="true" spellcheck="true" rows="5"></ion-textarea>
+        </ion-item>
+        <ion-button color="success" expand="full" (click)="save()">Save</ion-button>
+      </ion-footer>
+    </ion-card>
+</ion-content>

@@ -6,15 +6,12 @@ import { IonicModule } from '@ionic/angular';
 
 import { NewsNotificationModalPageRoutingModule } from './news-notification-modal-routing.module';
 
-import { NewsNotificationModalPage } from './news-notification-modal.page';
-
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
     NewsNotificationModalPageRoutingModule
-  ],
-  declarations: [NewsNotificationModalPage]
+  ]
 })
 export class NewsNotificationModalPageModule {}

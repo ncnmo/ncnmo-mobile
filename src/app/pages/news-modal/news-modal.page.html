@@ -16,8 +16,9 @@
       </ion-card-header>
       <img src="{{data.imagePath}}"  />
     <ion-row>
-      <ion-col>        
-        <div>Posted by Admin on Feb. 17 2019</div>
+      <ion-col>     
+         
+        <div>Posted on {{data.dateAdded | date:'mediumDate'}}</div>
       </ion-col>      
     </ion-row>
   </ion-card>

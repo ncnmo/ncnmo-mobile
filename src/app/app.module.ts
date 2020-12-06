@@ -11,12 +11,20 @@ import { Device } from '@ionic-native/device/ngx';
 import { NewsSearchModalPage  } from './pages/news-search-modal/news-search-modal.page';
 import { NewsInfoPopoverComponent } from './components/news-info-popover/news-info-popover.component';
 import { NotificationsInfoPopoverComponent } from './components/notifications-info-popover/notifications-info-popover.component';
-
+import { NewsModalPage } from './pages/news-modal/news-modal.page';
+import { NewsNotificationModalPage } from './pages/news-notification-modal/news-notification-modal.page';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 @NgModule({
-  declarations: [AppComponent,NewsSearchModalPage, NewsInfoPopoverComponent,NotificationsInfoPopoverComponent],
+  declarations: [
+  AppComponent,
+  NewsSearchModalPage, 
+  NewsModalPage,
+  NewsNotificationModalPage,
+  NewsInfoPopoverComponent,
+  NotificationsInfoPopoverComponent
+],
   entryComponents: [],
   imports: [
     BrowserModule,

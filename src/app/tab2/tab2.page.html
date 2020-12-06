@@ -19,10 +19,13 @@
             Your notification list is empty
         </ion-text>
       </div>   
-    <ion-item *ngFor="let notification of notifications">     
-        <ion-thumbnail slot="start" (click)="details(event.eventId)">
-            <img style="border-radius: 10%;" src="{{notification.image}}"/>
+    <ion-item *ngFor="let notification of notifications">
+        <ion-thumbnail slot="start" style="border-radius: 10%;" *ngIf="notification.image">
+          <img src="{{notification.image}}"/>
           </ion-thumbnail>
+          <ion-thumbnail slot="start" style="border-radius: 10%; width:15%; height:15%;" *ngIf="!notification.image">
+            <img src="../../assets/ncnmologo.png"  />
+            </ion-thumbnail>
           <ion-label (click)="showModal(notification)">
             <h3>{{notification.title}}</h3>
             <p>{{notification.date}}</p>  

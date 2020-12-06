@@ -62,6 +62,6 @@ export class Feedback{
     constructor(
         public Message:string,
         public DeviceId:string,
-        public FeedbackType:string
+        public FeedbackFor:string
     ){}
 }

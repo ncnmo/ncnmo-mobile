@@ -4,6 +4,7 @@ import { LocalDatabaseService } from '../services/local-database.service';
 import { NotificationSearchModalPage } from '../pages/notification-search-modal/notification-search-modal.page'
 import { NewsNotificationModalPage } from '../pages/news-notification-modal/news-notification-modal.page';
 import { NotificationsInfoPopoverComponent } from '../../app/components/notifications-info-popover/notifications-info-popover.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tab2',
@@ -14,7 +15,7 @@ export class Tab2Page {
   loading: any = true;
   items:string[] = [];
   notifications =[];
-  constructor(public actionSheetController: ActionSheetController,public popoverController: PopoverController,private database:LocalDatabaseService, public modalController:ModalController){
+  constructor(private router: Router,public actionSheetController: ActionSheetController,public popoverController: PopoverController,private database:LocalDatabaseService, public modalController:ModalController){
   }
 
   ngOnInit(){
@@ -41,6 +42,7 @@ export class Tab2Page {
     //this.events.publish('notifications:viewed')
   }
   
+
   async showModal(notification){
     const modal = await this.modalController.create({
       component:NewsNotificationModalPage,
@@ -52,7 +54,6 @@ export class Tab2Page {
   }
 
   async presentActionSheet(id) {
-    console.log(id);
     const actionSheet = await this.actionSheetController.create({
       buttons: [{
         text: 'Delete',

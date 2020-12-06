@@ -6,15 +6,12 @@ import { IonicModule } from '@ionic/angular';
 
 import { NewsModalPageRoutingModule } from './news-modal-routing.module';
 
-import { NewsModalPage } from './news-modal.page';
-
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
     NewsModalPageRoutingModule
-  ],
-  declarations: [NewsModalPage]
+  ]
 })
 export class NewsModalPageModule {}

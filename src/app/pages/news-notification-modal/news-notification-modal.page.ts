@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { ModalController } from '@ionic/angular';
+import { NewsService } from 'src/app/services/news.service';
 
 @Component({
   selector: 'app-news-notification-modal',
@@ -7,9 +10,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NewsNotificationModalPage implements OnInit {
 
-  constructor() { }
+  @Input() notification:any;
 
-  ngOnInit() {
+  constructor(private modalController:ModalController,private newsService:NewsService, private router: Router) { 
   }
 
+  ngOnInit() {
+   
+  }
+  async close(){
+    await this.modalController.dismiss();
+    this.router.navigate(["tabs/tab2"]);
+  }
 }

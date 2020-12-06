@@ -15,15 +15,14 @@ export class FeedbackService {
    
    }
 
-   GiveFeedback(message: string,feedbacktype:string):Observable<any>{
-    let deviceId:string;
-    deviceId = this.device.uuid;
-    let feedback = new Feedback(message,deviceId,feedbacktype);
+   GiveFeedback(message: string,feedbackFor:string):Observable<any>{
+
+    let feedback = new Feedback(message, this.device.uuid, feedbackFor);
 
     const httpOptions = {
       headers: new HttpHeaders({'Content-Type':'application/json'})
     }
 
-    return this.http.post<any>(this.baseUrl+"api/feedback/",feedback,httpOptions).pipe(data=>data);
+    return this.http.post<any>(this.baseUrl+"api/feedback/",JSON.stringify(feedback),httpOptions).pipe(data=>data);
    }
 }

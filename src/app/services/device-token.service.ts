@@ -18,10 +18,6 @@ export class DeviceTokenService {
   public saveToken(token:any):Observable<any>{
   
     let deviceToken = new DeviceToken(this.device.uuid,token.value, this.device.platform);
-    console.log("I GOT HERE 1")
-    console.log("I GOT HERE 2")
-    console.log("I GOT HERE 3")
-    console.log("THE TOKEN"+JSON.stringify(deviceToken));
     const httpOptions = {
       headers: new HttpHeaders({'Content-Type':'application/json'})
     }

@@ -22,7 +22,7 @@ export class NewsService {
   }
 
   getNewById(newsId:Number):Promise<any>{
-     return this.http.get<any>(this.baseUrl+"api/newsdetails/"+newsId).toPromise();
+     return this.http.get<any>(this.baseUrl+"api/news/"+newsId).toPromise();
   }
 
 

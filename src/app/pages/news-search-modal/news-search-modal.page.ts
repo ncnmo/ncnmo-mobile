@@ -48,7 +48,6 @@ export class NewsSearchModalPage implements OnInit {
     return  await modal.present();
     }
     catch{
-      console.log("something went wrong");
     }
   }
 

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { PopoverController} from '@ionic/angular';
 import { FeedbackService } from '../../services/feedback.service';
 
@@ -10,15 +11,22 @@ import { FeedbackService } from '../../services/feedback.service';
 export class NotificationsInfoPopoverComponent implements OnInit {
 
  
-  feedback:boolean = false;
+  isFeedback:boolean = false;
   message:string;
+  feedbackForm = new FormGroup({
+    message: new FormControl('', Validators.required)
+  });
   constructor(public popoverController: PopoverController, public feedbackService:FeedbackService) {
     this.message = "";
    }
 
   ngOnInit() {}
-  save(){
-    this.feedbackService.GiveFeedback(this.message,"notificationsfeedback" ).subscribe(data=>this.feedback = true);
+  submitFeedback(){
+    if(this.feedbackForm.invalid){
+      return;
+    }
+    this.message = this.feedbackForm.value.message;
+    this.feedbackService.GiveFeedback(this.message,"notification").subscribe(data=>this.isFeedback = true);
    }
    close(){
      this.popoverController.dismiss();

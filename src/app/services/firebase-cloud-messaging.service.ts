@@ -3,6 +3,8 @@ import {Plugins, PushNotification, PushNotificationToken, PushNotificationAction
 import { LocalDatabaseService  } from '../services/local-database.service';
 import { DeviceTokenService } from '../services/device-token.service';
 import { Router } from '@angular/router';
+import { ModalController } from '@ionic/angular';
+import { NewsNotificationModalPage } from '../pages/news-notification-modal/news-notification-modal.page';
 const { PushNotifications } = Plugins;
 
 @Injectable({
@@ -10,7 +12,7 @@ const { PushNotifications } = Plugins;
 })
 export class FirebaseCloudMessagingService {
 
-  constructor(private router: Router, private localDatabaseService: LocalDatabaseService, private deviceTokenService: DeviceTokenService) { }
+  constructor(public modalController:ModalController, private router: Router, private localDatabaseService: LocalDatabaseService, private deviceTokenService: DeviceTokenService) { }
   initPush() {
     if (Capacitor.platform !== 'web') {
       this.registerPush();
@@ -40,9 +42,8 @@ export class FirebaseCloudMessagingService {
     PushNotifications.addListener(
       'pushNotificationReceived',
       async (notification: PushNotification) => {
-        console.log('Push received: ' + JSON.stringify(notification));
         let date =  Date();
-        this.localDatabaseService.addNotification(+notification.id,notification.title,notification.body,notification.data.image,notification.data.postType,date);
+        this.localDatabaseService.addNotification(+notification.data.id,notification.data.title, notification.data.body,notification.data.image,notification.data.postType,date);
         //if(notification.data.postType === "event"){
           //this.events.publish('events:created');
         //}
@@ -58,11 +59,29 @@ export class FirebaseCloudMessagingService {
       'pushNotificationActionPerformed',
       async (notification: PushNotificationActionPerformed) => {
         const data = notification.notification.data;
-        console.log('Action performed: ' + JSON.stringify(notification.notification));
-        if (data.detailsId) {
-          this.router.navigateByUrl('')
+        let date =  Date();
+        this.localDatabaseService.addNotification(+notification.notification.data.id,notification.notification.data.title,notification.notification.data.body,notification.notification.data.image,notification.notification.data.postType,date);
+        let theData = {
+          notificationId: +notification.notification.data.id,
+          title:notification.notification.data.title,
+          body:notification.notification.data.body,
+          image:notification.notification.data.image,
+          postType:notification.notification.data.postType,
+          date:date
         }
+
+        this.showModal(theData);
       }
     );
+  }
+
+  async showModal(notification){
+    const modal = await this.modalController.create({
+      component:NewsNotificationModalPage,
+      componentProps:{
+        notification:notification
+      }
+    })
+    await modal.present();  
   }
 }

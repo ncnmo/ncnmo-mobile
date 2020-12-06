@@ -1,7 +1,7 @@
-import { Classes } from './classes';
+import { Feedback } from './classes';
 
-describe('Classes', () => {
+describe('Feedback', () => {
   it('should create an instance', () => {
-    expect(new Classes()).toBeTruthy();
+    expect(new Feedback("message", "deviceId","feedbackfor")).toBeTruthy();
   });
 });

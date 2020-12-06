@@ -29,7 +29,7 @@ export class LocalDatabaseService {
     .then((db:SQLiteObject)=>{
       
       this.database = db;
-      this.database.executeSql('CREATE TABLE IF NOT EXISTS notification (id INTEGER PRIMARY KEY AUTOINCREMENT, notificationId INTEGER,title TEXT,abstract TEXT,image TEXT,postType TEXT,date TEXT)',[]).then(d=>console.log());
+      this.database.executeSql('CREATE TABLE IF NOT EXISTS notification (id INTEGER PRIMARY KEY AUTOINCREMENT, notificationId INTEGER,title TEXT,body TEXT, image TEXT,postType TEXT,date TEXT)',[]).then(d=>console.log());
       this.databaseReady.next(true);
     })
   }
@@ -48,9 +48,9 @@ export class LocalDatabaseService {
     });
   }
 
-  addNotification(notificationId, title,abstract,image,postType,date){
-    let data = [notificationId,title,abstract,image,postType,date];
-    return this.database.executeSql('INSERT INTO notification (notificationId, title, abstract,image, postType,date) VALUES (?, ?, ?, ?, ?,?)',data).then(data=>{
+  addNotification(notificationId, title,body,image,postType,date){
+    let data = [notificationId,title,body,image.trim(),postType,date];
+    return this.database.executeSql('INSERT INTO notification (notificationId, title, body, image, postType,date) VALUES (?, ?, ?, ?, ?, ?)',data).then(data=>{
       this.loadNotifications();
     });
   }
@@ -65,7 +65,7 @@ export class LocalDatabaseService {
             id:data.rows.item(counter).id,
             notificationId:data.rows.item(counter).notificationId,
             title:data.rows.item(counter).title,
-            abstract:data.rows.item(counter).abstract,
+            body:data.rows.item(counter).body,
             image:data.rows.item(counter).image,
             postType:data.rows.item(counter).postType,
             date:moment.utc(data.rows.item(counter).date).fromNow()

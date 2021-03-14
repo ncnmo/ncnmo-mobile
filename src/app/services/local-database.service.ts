@@ -56,7 +56,7 @@ export class LocalDatabaseService {
   }
 
   loadNotifications(){
-    return this.database.executeSql('SELECT * FROM notification',[]).then(data=>{
+    return this.database.executeSql('SELECT * FROM notification ORDER BY date DESC',[]).then(data=>{
       let notifications = [];
 
       if(data.rows.length > 0){
@@ -68,11 +68,17 @@ export class LocalDatabaseService {
             body:data.rows.item(counter).body,
             image:data.rows.item(counter).image,
             postType:data.rows.item(counter).postType,
-            date:moment.utc(data.rows.item(counter).date).fromNow()
+            date:moment(data.rows.item(counter).date).fromNow()
           })
         }
       }
       this.notifications.next(notifications);
     });
+  }
+
+  getNotificationCount(notificationId){
+    let count = 0;
+    this.database.executeSql('SELECT COUNT(*) FROM notification WHERE notificationId = ?',[notificationId]).then(data=> count = data);
+    return count;
   }
 }

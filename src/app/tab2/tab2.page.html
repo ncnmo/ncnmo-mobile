@@ -20,17 +20,17 @@
         </ion-text>
       </div>   
     <ion-item *ngFor="let notification of notifications">
-        <ion-thumbnail slot="start" style="border-radius: 10%;" *ngIf="notification.image">
+        <ion-thumbnail slot="start" style="border-radius: 10%;" *ngIf="notification.image" (click)="showModal(notification)">
           <img src="{{notification.image}}"/>
-          </ion-thumbnail>
-          <ion-thumbnail slot="start" style="border-radius: 10%; width:15%; height:15%;" *ngIf="!notification.image">
-            <img src="../../assets/ncnmologo.png"  />
-            </ion-thumbnail>
-          <ion-label (click)="showModal(notification)">
-            <h3>{{notification.title}}</h3>
-            <p>{{notification.date}}</p>  
-          </ion-label>
-          <ion-icon name="close-circle" slot="end" src="../../assets/_ionicons_svg_md-more.svg" size="large" (click)="presentActionSheet(notification.id)"></ion-icon>
+        </ion-thumbnail>
+        <ion-thumbnail slot="start" style="border-radius: 10%; width:13%; height:10%;" *ngIf="!notification.image" (click)="showModal(notification)">
+          <img src="../../assets/icon.png"  />
+        </ion-thumbnail>
+        <ion-label (click)="showModal(notification)">
+          <h3>{{notification.title}}</h3>
+          <p>{{notification.date}}</p>
+        </ion-label>
+        <ion-icon name="close-circle" slot="end" src="../../assets/_ionicons_svg_md-more.svg" size="large" (click)="presentActionSheet(notification.id)"></ion-icon>
     </ion-item>
   </ion-list>
 </ion-content>

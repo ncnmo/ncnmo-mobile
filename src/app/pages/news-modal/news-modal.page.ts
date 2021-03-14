@@ -1,6 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ModalController } from '@ionic/angular';
-import { NewsService } from '../../services/news.service';
 
 @Component({
   selector: 'app-news-modal',
@@ -11,7 +10,7 @@ export class NewsModalPage implements OnInit {
 
   @Input() data:any;
  
-  constructor(private modalController:ModalController,private newsService:NewsService) { }
+  constructor(private modalController:ModalController) { }
 
   ngOnInit() {
   }

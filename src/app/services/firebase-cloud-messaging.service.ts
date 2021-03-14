@@ -5,6 +5,7 @@ import { DeviceTokenService } from '../services/device-token.service';
 import { Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import { NewsNotificationModalPage } from '../pages/news-notification-modal/news-notification-modal.page';
+import * as moment from 'moment';
 const { PushNotifications } = Plugins;
 
 @Injectable({
@@ -42,7 +43,7 @@ export class FirebaseCloudMessagingService {
     PushNotifications.addListener(
       'pushNotificationReceived',
       async (notification: PushNotification) => {
-        let date =  Date();
+        let date: Date = new Date();
         this.localDatabaseService.addNotification(+notification.data.id,notification.data.title, notification.data.body,notification.data.image,notification.data.postType,date);
         //if(notification.data.postType === "event"){
           //this.events.publish('events:created');
@@ -59,15 +60,19 @@ export class FirebaseCloudMessagingService {
       'pushNotificationActionPerformed',
       async (notification: PushNotificationActionPerformed) => {
         const data = notification.notification.data;
-        let date =  Date();
-        this.localDatabaseService.addNotification(+notification.notification.data.id,notification.notification.data.title,notification.notification.data.body,notification.notification.data.image,notification.notification.data.postType,date);
+        let date: Date = new Date();
+        let count = this.localDatabaseService.getNotificationCount(+notification.notification.data.id);
+        if(count === 0){
+          this.localDatabaseService.addNotification(+notification.notification.data.id,notification.notification.data.title,notification.notification.data.body,notification.notification.data.image,notification.notification.data.postType,date);
+        }
+
         let theData = {
           notificationId: +notification.notification.data.id,
           title:notification.notification.data.title,
           body:notification.notification.data.body,
           image:notification.notification.data.image,
           postType:notification.notification.data.postType,
-          date:date
+          date:moment(date).fromNow()
         }
 
         this.showModal(theData);
